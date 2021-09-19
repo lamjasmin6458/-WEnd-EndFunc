@@ -1,0 +1,70 @@
+_Main()
+
+Func _Main()
+    ;------------
+    $GUI_Main = GUICreate("Main " & FileGetVersion(@ScriptFullPath), 200, 200, 10, 10, $WS_POPUPWINDOW)
+    ;------------
+    ;Green | Red
+    Local $aColorsEx = _
+    [0x0096a1, 0xFFFFFF, 0x0096a1, _    ; normal    : Background, Text, Border
+     0x0096a1, 0xFFFFFF, 0x0096a1, _    ; focus     : Background, Text, Border
+     0xE43D35, 0xFFFFFF, 0xE43D35, _    ; hover     : Background, Text, Border
+     0xFF3D35, 0xFFFFFF, 0xFF3D35]      ; selected  : Background, Text, Border
+    GuiFlatButton_SetDefaultColorsEx($aColorsEx)
+    ;---
+    $BTN_Show_Page_2 = GuiFlatButton_Create("Show Page 2", 10, 10, 100, 38)
+    ;------------
+    GUISetState()
+    While 1
+        $iMsg_Main = GUIGetMsg()
+        Select
+            Case $iMsg_Main = $GUI_EVENT_CLOSE 
+                Continueloop
+            Case $iMsg_Main = $BTN_Show_Page_2
+                GUIDelete()
+                _Page_2()
+                ExitLoop
+        EndSelect
+    WEnd
+EndFunc
+
+Func _Page_2()
+
+    $GUI_HWNDPARENT2 = GUICreate("Page 2 " & FileGetVersion(@ScriptFullPath), 200, 200, 80, 80-1, $WS_POPUPWINDOW)
+    ;------------
+    ;Green | Red
+    Local $aColorsEx = _
+    [0x0096a1, 0xFFFFFF, 0x0096a1, _    ; normal    : Background, Text, Border
+     0x0096a1, 0xFFFFFF, 0x0096a1, _    ; focus     : Background, Text, Border
+     0xE43D35, 0xFFFFFF, 0xE43D35, _    ; hover     : Background, Text, Border
+     0xFF3D35, 0xFFFFFF, 0xFF3D35]      ; selected  : Background, Text, Border
+    GuiFlatButton_SetDefaultColorsEx($aColorsEx)
+    ;---
+    $BTN_Back = GuiFlatButton_Create("Back", 10, 10, 100, 38,1)
+    ;------------
+    ;Blue | BlueLight
+    Local $aColorsEx = _
+    [0x4aa5d2, 0xFFFFFF, 0x4aa5d2, _    ; normal    : Background, Text, Border
+     0x4aa5d2, 0xFFFFFF, 0x4aa5d2, _    ; focus     : Background, Text, Border
+     0x4aa5d2, 0xFFFFFF, 0x4aa5d2, _    ; hover     : Background, Text, Border
+     0x54aedb, 0xFFFFFF, 0x54aedb]      ; selected  : Background, Text, Border
+    GuiFlatButton_SetDefaultColorsEx($aColorsEx)
+    ;---
+    $BTN_Exit_2 = GuiFlatButton_Create("Exit 2", 20, 60, 100, 38,1)
+    ;------------
+    GUISetState()
+    While 1
+        $iMsg_Main = GUIGetMsg()
+        Select
+            Case $iMsg_Main = $GUI_EVENT_CLOSE 
+                Continueloop
+            Case $iMsg_Main = $BTN_Back
+                GUIDelete()
+                _Main()
+                MsgBox(0, "", "END 1")
+                ExitLoop
+            Case $iMsg_Main = $BTN_Exit_2
+                Exit
+        EndSelect
+    WEnd
+EndFunc
